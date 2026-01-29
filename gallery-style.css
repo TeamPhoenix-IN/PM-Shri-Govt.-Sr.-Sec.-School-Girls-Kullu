@@ -1,0 +1,260 @@
+/* =========================================
+   MODERN GALLERY PAGE STYLES (Mobile Optimized)
+   Filename: gallery-style.css
+   ========================================= */
+
+/* --- 1. Header Banner --- */
+.gallery-header {
+    background: linear-gradient(rgba(10, 16, 51, 0.8), rgba(10, 16, 51, 0.6)), url('assets/images/school_ground.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.gallery-header h1 {
+    font-size: 3.5rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-in;
+    padding: 0 20px;
+}
+
+/* --- 2. Filter Buttons --- */
+.gallery-section {
+    padding: 60px 5%;
+    background-color: #f9f9f9;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevents text breaking */
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(26, 35, 126, 0.2);
+}
+
+/* --- 3. Gallery Grid --- */
+.gallery-grid {
+    display: grid;
+    /* Desktop: Responsive columns min 300px wide */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+.gallery-item.hide { display: none; }
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay & Content */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.item-content {
+    position: absolute;
+    bottom: -80px;
+    left: 20px;
+    right: 20px;
+    z-index: 2;
+    transition: bottom 0.3s ease;
+}
+
+.item-content h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.item-content p {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Desktop Hover Actions */
+@media (min-width: 769px) {
+    .gallery-item:hover { transform: translateY(-5px); }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item:hover::after { opacity: 1; }
+    .gallery-item:hover .item-content { bottom: 20px; }
+}
+
+/* --- 4. Lightbox --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    padding: 10px;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border: 2px solid white;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 3rem; /* Larger touch target */
+    cursor: pointer;
+    line-height: 1;
+    z-index: 2001;
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 40px;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE TWEAKS (The Important Part)
+   ========================================= */
+@media (max-width: 768px) {
+    .gallery-header {
+        height: 25vh; /* Shorter header */
+        margin-top: 60px;
+    }
+    
+    .gallery-header h1 {
+        font-size: 2rem;
+    }
+
+    .gallery-section {
+        padding: 30px 4%; /* Reduce side padding to make grid wider */
+    }
+
+    /* 1. Horizontal Scroll for Filters */
+    .filter-container {
+        justify-content: flex-start; /* Align left */
+        overflow-x: auto; /* Enable scroll */
+        flex-wrap: nowrap; /* Don't stack buttons */
+        padding-bottom: 10px; /* Space for scrollbar */
+        margin-bottom: 25px;
+        
+        /* Hide scrollbar for cleaner look */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .filter-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        flex: 0 0 auto; /* Stop buttons from shrinking */
+    }
+
+    /* 2. Two-Column Grid */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* Force 2 columns */
+        gap: 10px; /* Tighter gap */
+    }
+
+    .gallery-item {
+        height: 160px; /* Shorter cards */
+        border-radius: 8px;
+    }
+
+    /* 3. Text Always Visible on Mobile */
+    .gallery-item::after {
+        opacity: 0.6; /* Always show gradient */
+    }
+
+    .item-content {
+        bottom: 10px; /* Always show text */
+        left: 10px;
+        right: 10px;
+    }
+
+    .item-content h3 {
+        font-size: 0.9rem; /* Smaller text */
+        margin-bottom: 2px;
+    }
+
+    .item-content p {
+        font-size: 0.7rem;
+    }
+}
