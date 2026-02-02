@@ -645,37 +645,183 @@ body {
     }
 }
 
-/* ===== NOTICE BOARD ===== */
-.notice-board {
-    padding: 40px 10%;
-    background: #f3f4f6;
+/* ===== NOTICES & UPDATES SECTION ===== */
+.updates-section {
+    padding: 60px 5%;
+    background-color: #f4f6f8; /* Light grey background */
 }
 
-.notice-board h2 {
-    margin-bottom: 20px; color: var(--primary);
+.updates-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Notices get slightly more space */
+    gap: 40px;
+    align-items: start;
 }
 
-/* Mobile Notice Board Title Limit */
-@media (max-width: 768px) {
-    .notice-board h2 {
-        font-size: 1.15rem;
-        line-height: 1.3;
-        margin-bottom: 15px;
-        
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
+/* Common Column Styles */
+.col-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent);
 }
 
-.notice {
+.col-header h2 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+.header-icon {
+    font-size: 1.8rem;
+}
+
+.col-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- LEFT COLUMN: NOTICE CARDS --- */
+.notice-card {
     background: white;
-    padding: 13px;
-    border-left: 5px solid var(--secondary);
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.notice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.notice-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff5252;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.notice-card h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.notice-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.card-meta .date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+}
+
+.link-btn {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.download-link {
+    text-decoration: none;
+    color: #d32f2f; /* PDF red color */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- RIGHT COLUMN: UPDATE CARDS --- */
+.update-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.update-card:hover {
+    border-color: var(--accent);
+    transform: translateX(5px);
+}
+
+.update-icon {
+    font-size: 1.5rem;
+    background: var(--light);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.update-info h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.update-info p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.update-info .date {
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .updates-container {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 50px;
+    }
+
+    .notice-card {
+        padding: 20px;
+    }
 }
 
 /* ===== PARALLAX IMAGE SECTION ===== */
@@ -780,12 +926,164 @@ body {
     text-align: center;
 }
 
-.leadership-container {
+/* ===== SCROLLING LEADERSHIP SECTION ===== */
+
+/* ===== SCROLLING LEADERSHIP SECTION ===== */
+
+/* 1. The Container Window */
+.leadership-marquee {
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 0 60px 0; /* Extra bottom padding for shadows */
+    position: relative;
+    /* Create a fade effect on left and right edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* 2. The Moving Track */
+.leadership-track {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centers the 5 items perfectly */
-    gap: 30px;
-    margin-top: 40px;
+    gap: 30px; /* Space between cards */
+    width: max-content; /* Ensure track is as wide as all cards */
+    /* Animation: Name | Duration | Timing | Delay | Iteration */
+    animation: scroll-left 35s linear infinite;
+}
+
+/* Pause scrolling on mouse hover for readability */
+.leadership-track:hover {
+    animation-play-state: paused;
+}
+
+/* 3. The Animation Keyframes */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move exactly 50% of the track width (since we duplicated the content) */
+        /* We add half the gap (15px) to ensure perfect alignment */
+        transform: translateX(calc(-50% - 15px)); 
+    }
+}
+
+/* 4. Updated Card Styling for Scroll */
+.leader-card {
+    /* Fixed width is crucial for smooth marquee */
+    flex: 0 0 260px; 
+    width: 260px;
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Ensure card doesn't shrink */
+    flex-shrink: 0; 
+}
+
+.leader-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    z-index: 10;
+}
+
+/* ===== MOBILE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    /* 1. Shrink the main "Visionary Leadership" heading even more */
+    .section-header h2 {
+        font-size: 1rem; /* Reduced from 1.5rem */
+        margin-bottom: 8px;
+    }
+
+    .section-header p {
+        font-size: 0.8rem;
+    }
+
+    /* 2. Drastically shrink text inside the cards */
+    .leader-info h3 {
+        font-size: 0.75rem; /* Significantly smaller Name */
+        line-height: 1.1;
+        margin-bottom: 3px;
+    }
+
+    .leader-info .designation {
+        font-size: 0.55rem; /* Very small Designation */
+        margin-bottom: 6px;
+        line-height: 1.2;
+    }
+
+    .leader-info .quote {
+        font-size: 0.55rem; /* Micro Quote */
+        padding: 5px;
+        line-height: 1.3;
+    }
+}
+
+/* 3. The Animation Keyframes */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move exactly 50% of the track width (since we duplicated the content) */
+        /* We add half the gap (15px) to ensure perfect alignment */
+        transform: translateX(calc(-50% - 15px)); 
+    }
+}
+
+/* 4. Updated Card Styling for Scroll */
+.leader-card {
+    /* Fixed width is crucial for smooth marquee */
+    flex: 0 0 260px; 
+    width: 260px;
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Ensure card doesn't shrink */
+    flex-shrink: 0; 
+}
+
+.leader-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    z-index: 10;
+}
+
+/* ===== MOBILE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .leadership-track {
+        gap: 20px;
+        animation-duration: 25s; /* Slightly faster on mobile */
+    }
+
+    .leader-card {
+        flex: 0 0 220px; /* Smaller cards on mobile */
+        width: 220px;
+        padding: 20px 15px;
+    }
+    
+    .leader-img-box {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .leader-info h3 {
+        font-size: 1rem;
+    }
+    
+    .leader-info .quote {
+        font-size: 0.8rem;
+    }
 }
 
 .leader-card {
@@ -1525,4 +1823,75 @@ footer {
         background: #fff !important;      /* Ensure White/Light background */
         font-weight: 800 !important;
     }
+}
+
+/* ===== SMALL MOBILE FIXES (S8+, iPhone SE, etc.) ===== */
+@media (max-width: 480px) {
+
+    /* 1. Reduce the fade area so more content is visible */
+    .leadership-marquee {
+        /* Reduce side masks from 10% to 5% to show more card width */
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        padding-bottom: 40px; /* Reduce bottom space */
+    }
+
+    /* 2. Shrink Card Width to fit narrow screens better */
+    .leader-card {
+        flex: 0 0 200px; /* Was 220px, now 200px */
+        width: 200px;
+        padding: 15px 10px; /* Tighter padding inside */
+    }
+
+    /* 3. Adjust gap between cards */
+    .leadership-track {
+        gap: 15px; /* Tighter gap */
+    }
+
+    /* 4. Fix Header Text Size (Prevent awkward wrapping) */
+    .section-header h2 {
+        font-size: 1.2rem; /* Smaller size to fit on one/two lines neatly */
+        margin-bottom: 5px;
+    }
+    
+    .section-header p {
+        font-size: 0.75rem;
+    }
+
+    /* 5. Resize Image & Text elements */
+    .leader-img-box {
+        width: 65px; /* Smaller image */
+        height: 65px;
+        margin-bottom: 8px;
+    }
+
+    .leader-info h3 {
+        font-size: 0.8rem; /* Name */
+        margin-bottom: 2px;
+    }
+
+    .leader-info .designation {
+        font-size: 0.6rem; /* Designation */
+        margin-bottom: 5px;
+    }
+
+    .leader-info .quote {
+        font-size: 0.6rem; /* Readable but small quote */
+        padding: 6px;
+        line-height: 1.3;
+    }
+}
+
+/* Add this to style.css */
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: inherit;       /* Inherits the white color from footer */
+    display: block;       /* Makes the entire line clickable */
+    width: 100%;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent); /* Turns yellow on hover */
 }

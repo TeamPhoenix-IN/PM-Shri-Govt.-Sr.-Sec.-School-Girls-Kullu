@@ -1,0 +1,164 @@
+/* FACULTY HEADER */
+.faculty-header {
+    background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(26, 35, 126, 0.9)), url('assets/images/campus_up.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 120px 20px 80px;
+    margin-bottom: 20px;
+}
+
+.faculty-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.faculty-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* CONTENT WRAPPER */
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* LIST SECTIONS */
+.list-section {
+    padding: 40px 0;
+    margin-bottom: 20px;
+}
+
+.list-section.bg-light {
+    background-color: #f9f9fc;
+    padding: 40px 30px;
+    border-radius: 15px;
+}
+
+.category-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.title-underline {
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent);
+    margin: 0 auto 50px auto;
+    border-radius: 2px;
+}
+
+/* CATEGORY SUB-CONTAINERS */
+.staff-category-container {
+    margin-bottom: 40px;
+}
+
+.staff-category-container h3 {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+    border-left: 5px solid var(--accent);
+    padding-left: 15px;
+}
+
+/* TABLE STYLING */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.staff-table thead {
+    background-color: var(--primary);
+    color: white;
+}
+
+.staff-table th, 
+.staff-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.staff-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.staff-table td {
+    font-size: 1rem;
+    color: #333;
+}
+
+.staff-table tr:last-child td {
+    border-bottom: none;
+}
+
+.staff-table tr:hover {
+    background-color: #f4f4f9;
+}
+
+/* Strong emphasis for the Subject column */
+.staff-table td:first-child {
+    font-weight: 600;
+    color: var(--primary);
+    width: 35%; /* Fixed width for labels */
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .faculty-header {
+        padding: 100px 20px 50px;
+    }
+    
+    .faculty-header h1 {
+        font-size: 2rem;
+    }
+    
+    .category-heading {
+        font-size: 1.8rem;
+    }
+
+    .staff-table th, 
+    .staff-table td {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .staff-table td:first-child {
+        width: 40%;
+    }
+}
+
+/* Add this to style.css */
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: inherit;       /* Inherits the white color from footer */
+    display: block;       /* Makes the entire line clickable */
+    width: 100%;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent); /* Turns yellow on hover */
+}

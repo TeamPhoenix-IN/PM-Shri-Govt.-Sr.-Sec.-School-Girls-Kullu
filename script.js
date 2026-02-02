@@ -37,28 +37,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
-       2. MOBILE DROPDOWN TOGGLE (About Us)
+       2. MOBILE DROPDOWN TOGGLE (FIXED FOR ALL MENUS)
        ========================================= */
-    const dropdownTrigger = document.querySelector('.dropdown-trigger');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
+    // Select ALL elements with class .dropdown-trigger
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 
-    if (dropdownTrigger && dropdownMenu) {
-        dropdownTrigger.addEventListener('click', (e) => {
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
             // Only trigger click behavior on screens smaller than 1024px (Mobile/Tablet)
             if (window.innerWidth <= 1024) {
                 e.preventDefault(); // Stop link from navigating/refreshing
-                dropdownMenu.classList.toggle('show');
                 
-                // Rotate arrow manually for mobile
-                const arrow = dropdownTrigger.querySelector('.arrow');
-                if(dropdownMenu.classList.contains('show')) {
-                    arrow.style.transform = 'rotate(180deg)';
-                } else {
-                    arrow.style.transform = 'rotate(0deg)';
+                // Find the specific menu associated with THIS trigger
+                const container = trigger.closest('.dropdown-container');
+                const menu = container.querySelector('.dropdown-menu');
+                
+                if (menu) {
+                    menu.classList.toggle('show');
+                    
+                    // Rotate arrow manually for mobile
+                    const arrow = trigger.querySelector('.arrow');
+                    if (arrow) {
+                        arrow.style.transform = menu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
                 }
             }
         });
-    }
+    });
 
     /* =========================================
        3. DYNAMIC BROWSER TITLE SCROLLING
